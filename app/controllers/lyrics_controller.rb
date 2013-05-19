@@ -17,7 +17,13 @@ class LyricsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @lyric.increment_hit_count
+        if @lyric.hit_count.nil?
+          @lyric.hit_count = 1
+        else
+          @lyric.hit_count += 1
+        end
+        @lyric.save
+        #@lyric.increment_hit_count
         render
       end
       format.json { render json: @lyric }
