@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h2><%= @lyric.artist %></h2>
+</p>
+
+<p>
+  <h3><%= @lyric.title %></h3>
+</p>
+
+<p>
+  <b>Lyrics:</b>
+  <%= @lyric.lyrics %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= simple_format(@lyric.content) %>
+</p>
+
+
+<%= link_to 'Edit', edit_lyric_path(@lyric) %> |
+<%= link_to 'Index', lyrics_path %>

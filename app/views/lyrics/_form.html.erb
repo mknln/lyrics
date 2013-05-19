@@ -1,0 +1,33 @@
+<%= form_for(@lyric) do |f| %>
+  <% if @lyric.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lyric.errors.count, "error") %> prohibited this lyric from being saved:</h2>
+
+      <ul>
+      <% @lyric.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :artist %><br />
+    <%= f.text_field :artist %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :lyrics %><br />
+    <%= f.text_field :lyrics %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
