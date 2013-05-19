@@ -9,7 +9,7 @@
 </p>
 
 <p>
-  <i>Viewed <%= @lyric.hit_count %> times</i>
+<i>Viewed <%= pluralize(@lyric.hit_count, 'time') %></i>
 <p>
   <b>Lyrics:</b>
   <%= @lyric.lyrics %>
