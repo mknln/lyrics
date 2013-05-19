@@ -17,9 +17,12 @@
 
 <p>
   <b>Content:</b>
-  <%= simple_format(@lyric.content) %>
+  <%= simple_format(@lyric.content)%>
 </p>
 
+<p>
+  <%= raw youtube_embed(@lyric.youtube_id) %>
+</p>
 
 <%= link_to 'Edit', edit_lyric_path(@lyric) %> |
 <%= link_to 'Index', lyrics_path %>
