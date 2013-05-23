@@ -20,6 +20,8 @@ $(document).ready(function() {
           });
 
           $("#lyric_title").autocomplete("option", { source: songs })
+        } else {
+          $("#lyric_title").autocomplete("option", { source: [] });
         }
       }
     });
