@@ -27,9 +27,11 @@
     <%= f.label :content %><br />
     <%= f.text_area :content %>
   </div>
-  <div class="field">
-    <%= f.label :youtube_id, 'Youtube ID' %><br />
+  <div id="youtube-id" class="field">
+    <%= f.label :youtube_id, 'Youtube ID' %>
+    <br />
     <%= f.text_field :youtube_id %>
+    <a href="#" id="fetch-youtube-results">search youtube</a>
   </div>
   <div class="actions">
     <%= f.submit %>

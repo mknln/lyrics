@@ -1,6 +1,14 @@
 
 $.ajaxSettings.traditional = true;
 
+var GOOGLE_API_LOADED = false;
+function googleApiLoaded() {
+  gapi.client.setApiKey('AIzaSyBmcLUMsOweeh0AhXxDeIRkTKskxZTrGI8');
+  gapi.client.load('youtube', 'v3', function() {
+    GOOGLE_API_LOADED = true;
+  });
+}
+
 $(document).ready(function() {
 
   var reset_title_autocomplete = function() {
@@ -62,4 +70,42 @@ $(document).ready(function() {
     reset_title_autocomplete();
   }
 
+  $(document).on("click", ".open-youtube-window", function(e) {
+    e.preventDefault();
+
+    var id = $(this).attr("youtube-id");
+    var options = "left=20,top=20,width=740,height=580";
+    window.open('http://youtube.com/watch?v='+id, 'youtube', options);
+  });
+
+  $(document).on("click", ".select-youtube-link", function(e) {
+    e.preventDefault();
+
+    var id = $(this).attr("youtube-id");
+    $("#lyric_youtube_id").val(id);
+  });
+
+  $("#fetch-youtube-results").click(function(e) {
+    e.preventDefault();
+
+    if (!GOOGLE_API_LOADED)
+      return;
+
+    var q = $("#lyric_artist").val() + " " + $("#lyric_title").val();
+    var request = gapi.client.youtube.search.list({
+      q: q,
+      part: 'id,snippet'
+    });
+
+    request.execute(function(response) {
+      if (response && response.result) {
+        var items = response.result.items;
+        for (var i = 0; i < items.length; i++) {
+          var preview_link = '<a href="#" class="open-youtube-window" youtube-id="'+items[i].id.videoId+'">Preview</a>';
+          var select_link = '<a href="#" class="select-youtube-link" youtube-id="'+items[i].id.videoId+'">Select</a>';
+          $("#youtube-id").append("<p>"+items[i].snippet.title+" "+preview_link+" | "+select_link+"</p>");
+        }
+      }
+    });
+  });
 });
