@@ -17,3 +17,5 @@
 echonest_key.txt
 
 app/assets/jquery-ui-1.10.3.custom/
+
+app/assets/javascripts/api_keys.js

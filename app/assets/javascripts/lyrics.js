@@ -3,7 +3,7 @@ $.ajaxSettings.traditional = true;
 
 var GOOGLE_API_LOADED = false;
 function googleApiLoaded() {
-  gapi.client.setApiKey('AIzaSyBmcLUMsOweeh0AhXxDeIRkTKskxZTrGI8');
+  gapi.client.setApiKey(GOOGLE_API_KEY);
   gapi.client.load('youtube', 'v3', function() {
     GOOGLE_API_LOADED = true;
   });
@@ -16,7 +16,7 @@ $(document).ready(function() {
       url: "http://developer.echonest.com/api/v4/artist/songs",
       dataType: "jsonp",
       data: {
-        api_key: "5OIRDLQ1VB9GCZUTX",
+        api_key: ECHONEST_API_KEY,
         format: "jsonp",
         name: $("#lyric_artist").val(),
         results: 100
@@ -41,7 +41,7 @@ $(document).ready(function() {
         url: "http://developer.echonest.com/api/v4/artist/search",
         dataType: "jsonp",
         data: {
-          api_key: "5OIRDLQ1VB9GCZUTX",
+          api_key: ECHONEST_API_KEY,
           format: "jsonp",
           name: request.term,
           sort: 'familiarity-desc',
