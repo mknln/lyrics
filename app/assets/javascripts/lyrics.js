@@ -99,11 +99,14 @@ $(document).ready(function() {
 
     request.execute(function(response) {
       if (response && response.result) {
+
+        $("#youtube-results").empty();
+
         var items = response.result.items;
         for (var i = 0; i < items.length; i++) {
           var preview_link = '<a href="#" class="open-youtube-window" youtube-id="'+items[i].id.videoId+'">Preview</a>';
           var select_link = '<a href="#" class="select-youtube-link" youtube-id="'+items[i].id.videoId+'">Select</a>';
-          $("#youtube-id").append("<p>"+items[i].snippet.title+" "+preview_link+" | "+select_link+"</p>");
+          $("#youtube-results").append("<p>"+items[i].snippet.title+" "+preview_link+" | "+select_link+"</p>");
         }
       }
     });
