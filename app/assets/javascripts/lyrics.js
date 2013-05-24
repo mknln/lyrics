@@ -93,7 +93,7 @@ $(document).ready(function() {
 
     var q = $("#lyric_artist").val() + " " + $("#lyric_title").val();
     var request = gapi.client.youtube.search.list({
-      q: q,
+      q: q + ' -vevo',
       part: 'id,snippet'
     });
 
