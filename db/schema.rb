@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525060140) do
+ActiveRecord::Schema.define(:version => 20130525013839) do
 
   create_table "lyrics", :force => true do |t|
     t.string   "artist"
@@ -29,21 +29,10 @@ ActiveRecord::Schema.define(:version => 20130525060140) do
     t.integer "playlist_id"
   end
 
-  create_table "playlist_taggings", :force => true do |t|
-    t.integer  "lyric_id"
-    t.integer  "playlist_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "playlist_taggings", ["lyric_id"], :name => "index_playlist_taggings_on_lyric_id"
-  add_index "playlist_taggings", ["playlist_id"], :name => "index_playlist_taggings_on_playlist_id"
-
   create_table "playlists", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.text     "lyric_list"
   end
 
 end
