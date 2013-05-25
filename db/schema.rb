@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130519165550) do
+ActiveRecord::Schema.define(:version => 20130525213205) do
 
   create_table "lyrics", :force => true do |t|
     t.string   "artist"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20130519165550) do
     t.datetime "updated_at",                :null => false
     t.integer  "hit_count",  :default => 0, :null => false
     t.string   "youtube_id"
+  end
+
+  create_table "playlists", :force => true do |t|
+    t.string   "name"
+    t.text     "lyric_ids"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
