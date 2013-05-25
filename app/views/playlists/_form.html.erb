@@ -15,10 +15,23 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :lyric_ids %><br />
-    <%= f.text_area :lyric_ids %>
-  </div>
+
+  <% @playlist.lyric_ids.each do |value| %>
+    <%= f.fields_for :lyric_ids do |fields| %>
+      <div class="field">
+        <%= fields.label "", "Lyric ID: " %>
+        <%= fields.text_field "", :value => value %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= f.fields_for :lyric_ids do |fields| %>
+    <div class="field">
+      <%= fields.label "", "Lyric ID: " %>
+      <%= fields.text_field "", :value => '' %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
