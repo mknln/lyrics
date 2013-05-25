@@ -21,6 +21,7 @@
       <div class="field">
         <%= fields.label "", "Lyric ID: " %>
         <%= fields.text_field "", :value => value %>
+        <%= link_to_remove_fields "remove", f %>
       </div>
     <% end %>
   <% end %>
@@ -31,6 +32,8 @@
       <%= fields.text_field "", :value => '' %>
     </div>
   <% end %>
+
+  <%= link_to_add_fields "Add another" %>
 
   <div class="actions">
     <%= f.submit %>
