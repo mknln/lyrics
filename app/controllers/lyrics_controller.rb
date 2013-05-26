@@ -84,4 +84,23 @@ class LyricsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def autocomplete_json(objects)
+    objects.collect do |obj|
+      {
+        :label => obj.printable_title,
+        :value => obj.printable_title,
+        :id => obj.id
+      }
+    end
+  end
+
+  def search
+    @lyrics = Lyric.find(:all, :conditions => ['artist LIKE ?', "%#{params[:term]}%"])
+    respond_to do |format|
+      format.json { render json: autocomplete_json(@lyrics) }
+    end
+  end
+
 end

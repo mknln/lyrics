@@ -1,4 +1,13 @@
 
+$(document).ready(function() {
+  $(".lyric_id_search").autocomplete({
+    source: "/lyrics/search.json",
+    select: function(event, ui) {
+      $(this).prevAll(".lyric_id").val(ui.item.id);
+    }
+  });
+});
+
 function remove_fields(link) {
   $(link).parent(".field").remove();
 }
