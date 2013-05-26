@@ -9,8 +9,7 @@ $(document).ready(function() {
 
   $(".lyric_id_search").autocomplete(options);
 
-  $(document).on("focus", ".lyric_id_search"/*:not(.ui-autocomplete-input)"*/, function (event) {
-    console.log("yeah, bro");
+  $(document).on("focus", ".lyric_id_search:not(.ui-autocomplete-input)", function (event) {
     $(this).autocomplete(options);
   });
   
