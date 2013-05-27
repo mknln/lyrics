@@ -21,7 +21,7 @@
       <div class="field">
         <%= fields.label "", "Lyric ID: " %>
         <%= fields.hidden_field "", { :value => lyric.id, :class => 'lyric_id' } %>
-        <%= fields.text_field "", { :value => lyric.printable_title, :class => 'lyric_id_search' } %>
+        <%= text_field_tag nil, "", { :value => lyric.printable_title, :class => 'lyric_id_search' } %>
         <%= link_to_remove_fields "remove", f %>
       </div>
     <% end %>
@@ -31,7 +31,7 @@
     <div class="field">
       <%= fields.label "", "Lyric ID: " %>
       <%= fields.hidden_field "", { :value => '', :class => 'lyric_id' } %>
-      <%= fields.text_field "", { :value => '', :class => 'lyric_id_search' } %>
+      <%= text_field_tag nil, "", { :value => '', :class => 'lyric_id_search' } %>
     </div>
   <% end %>
 
