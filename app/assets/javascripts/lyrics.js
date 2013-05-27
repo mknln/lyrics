@@ -11,14 +11,14 @@ function googleApiLoaded() {
 
 $(document).ready(function() {
 
-  var reset_title_autocomplete = function() {
+  var reset_title_autocomplete = function(artist) {
     $.ajax({
       url: "http://developer.echonest.com/api/v4/artist/songs",
       dataType: "jsonp",
       data: {
         api_key: ECHONEST_API_KEY,
         format: "jsonp",
-        name: $("#lyric_artist").val(),
+        name: artist || $("#lyric_artist").val(),
         results: 100
       },
       success: function( data ) {
@@ -58,7 +58,7 @@ $(document).ready(function() {
       });
     },
     select: function(event, ui) {
-      reset_title_autocomplete();
+      reset_title_autocomplete(ui.item.value);
     }
   });
 
