@@ -1,0 +1,21 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @playlist.name %>
+</p>
+
+<p>
+  <% if not @current_lyric.youtube_id.blank? %>
+    <%= raw youtube_embed @current_lyric.youtube_id %>
+  <% else %>
+    <p>This lyric does not have a youtube video attached to it.</p>
+  <% end %>
+</p>
+
+<input type="hidden" id="next-lyric-id" value="<%= @next_lyric.id %>" />
+
+
+<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
+<%= link_to 'Back', playlists_path %>

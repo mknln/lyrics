@@ -80,4 +80,20 @@ class PlaylistsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # GET /playlists/1/play
+  def play
+    @playlist = Playlist.find(params[:id])
+
+    if params[:lyric_id]
+      index = @playlist.lyrics.find_index { |lyric| lyric.id == params[:lyric_id].to_i }
+      @current_lyric = @playlist.lyrics[index]
+      @next_lyric = @playlist.lyrics[(index + 1) % @playlist.lyrics.count]
+    else
+      @current_lyric = @playlist.lyrics.first
+      @next_lyric = @playlist.lyrics[1 % @playlist.lyrics.count]
+    end
+
+  end
+
 end

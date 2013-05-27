@@ -1,6 +1,10 @@
 Lyrics::Application.routes.draw do
 
-  resources :playlists
+  resources :playlists do
+    member do
+      get "play"
+    end
+  end
 
 
   resources :lyrics do
