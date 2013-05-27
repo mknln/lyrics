@@ -17,7 +17,7 @@
   </div>
 
   <% @playlist.lyrics.each do |lyric| %>
-    <%= f.fields_for :lyric_ids do |fields| %>
+    <%= f.fields_for :lyric_ids_list do |fields| %>
       <div class="field">
         <%= fields.label "", "Lyric ID: " %>
         <%= fields.hidden_field "", { :value => lyric.id, :class => 'lyric_id' } %>
@@ -27,7 +27,7 @@
     <% end %>
   <% end %>
 
-  <%= f.fields_for :lyric_ids do |fields| %>
+  <%= f.fields_for :lyric_ids_list do |fields| %>
     <div class="field">
       <%= fields.label "", "Lyric ID: " %>
       <%= fields.hidden_field "", { :value => '', :class => 'lyric_id' } %>

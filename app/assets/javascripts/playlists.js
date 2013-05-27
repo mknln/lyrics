@@ -21,8 +21,8 @@ function remove_fields(link) {
 
 function add_fields(link, association, content) {
   var html = '<div class="field">';
-  html += '<label for="playlist_lyric_ids_">Lyric ID: </label>';
-  html += '<input class="lyric_id" id="playlist_lyric_ids_" name="playlist[lyric_ids][]" type="hidden" value="">';
+  html += '<label for="playlist_lyric_ids_list_">Lyric ID: </label>';
+  html += '<input class="lyric_id" id="playlist_lyric_ids_list_" name="playlist[lyric_ids_list][]" type="hidden" value="">';
   html += '<input class="lyric_id_search" type="text" value="">';
   html += ' <a href="#" onclick="remove_fields(this); return false;">remove</a>';
   html += '</div>';
