@@ -9,4 +9,8 @@ class Playlist < ActiveRecord::Base
     lyric_ids.reject! { |id| !Lyric.exists?(id) }
   end
 
+  def lyrics
+    lyric_ids.collect { |id| Lyric.find(id) }
+  end
+
 end

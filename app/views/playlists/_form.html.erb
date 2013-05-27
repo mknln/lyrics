@@ -16,11 +16,12 @@
     <%= f.text_field :name %>
   </div>
 
-  <% @playlist.lyric_ids.each do |value| %>
+  <% @playlist.lyrics.each do |lyric| %>
     <%= f.fields_for :lyric_ids do |fields| %>
       <div class="field">
         <%= fields.label "", "Lyric ID: " %>
-        <%= fields.text_field "", :value => value %>
+        <%= fields.hidden_field "", { :value => lyric.id, :class => 'lyric_id' } %>
+        <%= fields.text_field "", { :value => lyric.printable_title, :class => 'lyric_id_search' } %>
         <%= link_to_remove_fields "remove", f %>
       </div>
     <% end %>
@@ -29,7 +30,8 @@
   <%= f.fields_for :lyric_ids do |fields| %>
     <div class="field">
       <%= fields.label "", "Lyric ID: " %>
-      <%= fields.text_field "", :value => '' %>
+      <%= fields.hidden_field "", { :value => '', :class => 'lyric_id' } %>
+      <%= fields.text_field "", { :value => '', :class => 'lyric_id_search' } %>
     </div>
   <% end %>
 
