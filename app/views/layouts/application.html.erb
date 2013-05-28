@@ -9,6 +9,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="navigation">
+    <%= link_to 'Lyrics', lyrics_path %> |
+    <%= link_to 'Playlists', playlists_path %>
+  </div>
 
 <%= yield %>
 
