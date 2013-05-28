@@ -1,4 +1,11 @@
 
+function inject_youtube_iframe_api() {
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
+
 function countdown_to_page_skip() {
   if ($("#next-lyric-id").length > 0) {
 
@@ -25,9 +32,12 @@ function countdown_to_page_skip() {
   }
 }
 
-$(document).ready(function() {
 
-  window.onYouTubePlayerAPIReady = function() {
+$(document).ready(function() {
+  
+  inject_youtube_iframe_api();
+
+  window.onYouTubeIframeAPIReady = function() {
     if ($(".video-player #youtube-id").length > 0) {
       var id = $(".video-player #youtube-id").html();
       new YT.Player('player_' + id, {
