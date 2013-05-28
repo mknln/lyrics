@@ -2,20 +2,37 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Playlist:</b>
   <%= @playlist.name %>
 </p>
 
 <p>
-  <% if not @current_lyric.youtube_id.blank? %>
-    <div class="video-player">
-      <span style="display:none" id="youtube-id"><%= @current_lyric.youtube_id %></span>
-      <%= raw youtube_embed @current_lyric.youtube_id %>
+  <% if @current_lyric.present? %>
+    <div class="current-song">
+      <b>Current song: </b>
+      <%= @current_lyric.printable_title %>
     </div>
+    <% if @current_lyric.youtube_id.present? %>
+      <div class="video-player">
+        <span style="display:none" id="youtube-id"><%= @current_lyric.youtube_id %></span>
+        <%= raw youtube_embed @current_lyric.youtube_id %>
+      </div>
+    <% else %>
+      <div>
+        This lyric does not have a youtube video attached to it.
+        <%= link_to '[edit]', edit_lyric_path(@current_lyric) %>
+      </div>
+    <% end %>
   <% else %>
-    <p>This lyric does not have a youtube video attached to it.</p>
+    <div class="error">
+      Oops! That lyric could not be found.
+    </div>
   <% end %>
 </p>
+
+<div style="display:none" id="countdown-timer">
+  Going to next video in... <span class="time">&nbsp;</span> <a href="#" class="stop-timer">stop</a>
+</div>
 
 <input type="hidden" id="next-lyric-id" value="<%= @next_lyric.id %>" />
 
