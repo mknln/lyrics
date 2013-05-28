@@ -1,5 +1,25 @@
 
+
 $(document).ready(function() {
+
+  window.onYouTubePlayerAPIReady = function() {
+    if ($(".video-player #youtube-id")) {
+      var id = $(".video-player #youtube-id").html();
+      new YT.Player('player_' + id, {
+        events: {
+          'onStateChange': function(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+              if ($("#next-lyric-id") && $("#next-lyric-id").val()) {
+                window.location = window.location.pathname + "?lyric_id=" + $("#next-lyric-id").val();
+              }
+              // forward them to the next video
+            }
+          }
+        }
+      });
+    }
+  };
+
   var options = {
     source: "/lyrics/search.json",
     select: function(event, ui) {

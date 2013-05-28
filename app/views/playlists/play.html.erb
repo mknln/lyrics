@@ -8,7 +8,10 @@
 
 <p>
   <% if not @current_lyric.youtube_id.blank? %>
-    <%= raw youtube_embed @current_lyric.youtube_id %>
+    <div class="video-player">
+      <span style="display:none" id="youtube-id"><%= @current_lyric.youtube_id %></span>
+      <%= raw youtube_embed @current_lyric.youtube_id %>
+    </div>
   <% else %>
     <p>This lyric does not have a youtube video attached to it.</p>
   <% end %>
