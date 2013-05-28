@@ -14,6 +14,9 @@ $(document).ready(function() {
               }
               // forward them to the next video
             }
+          },
+          'onReady': function(event) {
+            event.target.playVideo();
           }
         }
       });
