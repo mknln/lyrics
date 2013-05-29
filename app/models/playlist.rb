@@ -1,7 +1,7 @@
 class Playlist < ActiveRecord::Base
   attr_accessible :lyric_ids_list, :name
   serialize :lyric_ids_list, Array
-  has_many :playlist_taggings
+  has_many :playlist_taggings, :dependent => :destroy
   has_many :lyrics, :through => :playlist_taggings
 
   before_save :filter_lyric_ids_list
