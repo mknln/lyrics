@@ -96,7 +96,7 @@ class PlaylistsController < ApplicationController
 
   end
 
-  # GET /playlists/1/add_lyric.json?lyric_id=5
+  # POST /playlists/1/add_lyric.json?lyric_id=5
   def add_lyric
     respond_to do |format|
       format.json do
@@ -106,8 +106,10 @@ class PlaylistsController < ApplicationController
           if @playlist.save
             render :json => @playlist, :status => 200
           else
-            render :status => 422
+            render :json => { errors: @playlist.errors.full_messages }, :status => 422
           end
+        else
+          render :json => { errors: 'lyric_id parameter must be supplied' }, :status => 400
         end
       end
     end

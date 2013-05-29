@@ -17,8 +17,6 @@ class PlaylistsControllerTest < ActionController::TestCase
   end
 
   test "should create playlist" do
-    skip
-
     assert_difference('Playlist.count') do
       post :create, playlist: { lyric_ids_list: @playlist.lyric_ids_list, name: @playlist.name }
     end
@@ -37,8 +35,6 @@ class PlaylistsControllerTest < ActionController::TestCase
   end
 
   test "should update playlist" do
-    skip
-
     put :update, id: @playlist, playlist: { lyric_ids_list: @playlist.lyric_ids_list, name: @playlist.name }
     assert_redirected_to playlist_path(assigns(:playlist))
   end
@@ -51,10 +47,16 @@ class PlaylistsControllerTest < ActionController::TestCase
     assert_redirected_to playlists_path
   end
 
-  test "should append a lyric" do
+  test "should add a lyric" do
     @lyric = lyrics(:one)
     post :add_lyric, { format: :json, id: @playlist, lyric_id: @lyric }
     assert assigns(:playlist).lyrics.last.id == @lyric.id
+  end
+
+  test "should not add lyric without lyric_id" do
+    post :add_lyric, { format: :json, id: @playlist }
+    assert @response.status == 400
+    assert json_response['errors'].include? 'lyric_id parameter must be supplied'
   end
 
 end
