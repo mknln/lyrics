@@ -3,6 +3,7 @@ Lyrics::Application.routes.draw do
   resources :playlists do
     member do
       get "play"
+      post "add_lyric"
     end
   end
 

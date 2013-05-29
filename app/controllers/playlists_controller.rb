@@ -96,4 +96,21 @@ class PlaylistsController < ApplicationController
 
   end
 
+  # GET /playlists/1/add_lyric.json?lyric_id=5
+  def add_lyric
+    respond_to do |format|
+      format.json do
+        @playlist = Playlist.find(params[:id])
+        if params[:lyric_id]
+          @playlist.lyric_ids_list = @playlist.lyric_ids + [params[:lyric_id]]
+          if @playlist.save
+            render :json => @playlist, :status => 200
+          else
+            render :status => 422
+          end
+        end
+      end
+    end
+  end
+
 end

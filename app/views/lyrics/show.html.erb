@@ -21,9 +21,13 @@
 </p>
 
 <p>
-<% if (not @lyric.youtube_id.blank?) %>
+<% if @lyric.youtube_id.present? %>
   <%= raw youtube_embed(@lyric.youtube_id) %>
 <% end %>
+</p>
+
+<p>
+  <%= @all_playlists.to_yaml %>
 </p>
 
 <%= link_to 'Edit', edit_lyric_path(@lyric) %> |

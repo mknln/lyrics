@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  lyric_ids: MyText
+  lyric_ids_list: []
 
 two:
   name: MyString
-  lyric_ids: MyText
+  lyric_ids_list: []
