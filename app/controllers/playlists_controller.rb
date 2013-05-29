@@ -109,7 +109,7 @@ class PlaylistsController < ApplicationController
             render :json => { errors: @playlist.errors.full_messages }, :status => 422
           end
         else
-          render :json => { errors: 'lyric_id parameter must be supplied' }, :status => 400
+          render :json => { errors: ['lyric_id parameter must be supplied'] }, :status => 400
         end
       end
     end
