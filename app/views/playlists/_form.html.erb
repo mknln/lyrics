@@ -16,7 +16,7 @@
     <%= f.text_field :name %>
   </div>
 
-  <%= f.has_many_autocomplete :lyric_ids, autocomplete_lyric_printable_title_playlists_path, @playlist.lyrics.collect { |s| [s.title, s.id] }, { :label => 'Add song: ' } %>
+  <%= f.has_many_autocomplete :lyric_ids, autocomplete_lyric_printable_title_playlists_path, @playlist.lyrics.collect { |s| [s.printable_title, s.id] }, { :label => 'Add song: ' } %>
 
   <div class="actions">
     <%= f.submit %>

@@ -6,8 +6,16 @@
 </p>
 
 <p>
-  <b>Lyric ids:</b>
-  <%= @playlist.lyric_ids %>
+  <b>Songs:</b>
+  <ul>
+    <% @playlist.lyrics.each do |lyric| %>
+      <li>
+      <% url = play_playlist_path(@playlist.id, { :lyric_id => lyric.id }) %>
+      <%= link_to (raw youtube_thumb(lyric.youtube_id)), url %>
+      <%= link_to lyric.printable_title, url %>
+      </li>
+    <% end %>
+  </ul>
 </p>
 
 
