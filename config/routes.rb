@@ -5,6 +5,8 @@ Lyrics::Application.routes.draw do
       get "play"
       post "add_lyric"
     end
+
+    get :autocomplete_lyric_printable_title, :on => :collection
   end
 
 

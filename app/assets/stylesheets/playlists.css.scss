@@ -1,3 +1,15 @@
 // Place all the styles related to the Playlists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul.hma-list {
+  width: 350px;
+}
+
+ul.hma-list li {
+  font-size: 14px;
+}
+
+ul.hma-list .ui-icon {
+  display: inline-block;
+}

@@ -16,26 +16,7 @@
     <%= f.text_field :name %>
   </div>
 
-  <% @playlist.lyrics.each do |lyric| %>
-    <%= f.fields_for :lyric_ids_list do |fields| %>
-      <div class="field">
-        <%= fields.label "", "Lyric ID: " %>
-        <%= fields.hidden_field "", { :value => lyric.id, :class => 'lyric_id' } %>
-        <%= text_field_tag nil, "", { :value => lyric.printable_title, :class => 'lyric_id_search' } %>
-        <%= link_to_remove_fields "remove", f %>
-      </div>
-    <% end %>
-  <% end %>
-
-  <%= f.fields_for :lyric_ids_list do |fields| %>
-    <div class="field">
-      <%= fields.label "", "Lyric ID: " %>
-      <%= fields.hidden_field "", { :value => '', :class => 'lyric_id' } %>
-      <%= text_field_tag nil, "", { :value => '', :class => 'lyric_id_search' } %>
-    </div>
-  <% end %>
-
-  <%= link_to_add_fields "Add another" %>
+  <%= f.has_many_autocomplete :lyric_ids, autocomplete_lyric_printable_title_playlists_path, @playlist.lyrics.collect { |s| [s.title, s.id] }, { :label => 'Add song: ' } %>
 
   <div class="actions">
     <%= f.submit %>

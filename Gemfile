@@ -35,3 +35,5 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+gem 'has-many-autocomplete', :git => 'git://github.com/mpnolan/has-many-autocomplete'

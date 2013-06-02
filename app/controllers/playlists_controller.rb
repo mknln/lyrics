@@ -1,4 +1,9 @@
+require 'has_many_autocomplete'
+
 class PlaylistsController < ApplicationController
+
+  autocomplete :lyric, :printable_title
+
   # GET /playlists
   # GET /playlists.json
   def index
@@ -57,6 +62,7 @@ class PlaylistsController < ApplicationController
   # PUT /playlists/1.json
   def update
     @playlist = Playlist.find(params[:id])
+    @playlist.lyrics = []
 
     respond_to do |format|
       if @playlist.update_attributes(params[:playlist])
