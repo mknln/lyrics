@@ -32,11 +32,6 @@ class QueueJobsController < ApplicationController
     end
   end
 
-  # GET /queue_jobs/1/edit
-  def edit
-    @queue_job = QueueJob.find(params[:id])
-  end
-
   # POST /queue_jobs
   # POST /queue_jobs.json
   def create
@@ -44,26 +39,11 @@ class QueueJobsController < ApplicationController
 
     respond_to do |format|
       if @queue_job.save
+        @queue_job.scrape_album
         format.html { redirect_to @queue_job, notice: 'Queue job was successfully created.' }
         format.json { render json: @queue_job, status: :created, location: @queue_job }
       else
         format.html { render action: "new" }
-        format.json { render json: @queue_job.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /queue_jobs/1
-  # PUT /queue_jobs/1.json
-  def update
-    @queue_job = QueueJob.find(params[:id])
-
-    respond_to do |format|
-      if @queue_job.update_attributes(params[:queue_job])
-        format.html { redirect_to @queue_job, notice: 'Queue job was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
         format.json { render json: @queue_job.errors, status: :unprocessable_entity }
       end
     end
