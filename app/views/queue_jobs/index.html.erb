@@ -1,0 +1,22 @@
+<h1>Listing queue_jobs</h1>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @queue_jobs.each do |queue_job| %>
+  <tr>
+    <td><%= queue_job.item %></td>
+    <td><%= link_to 'Show', queue_job %></td>
+    <td><%= link_to 'Destroy', queue_job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Queue job', new_queue_job_path %>

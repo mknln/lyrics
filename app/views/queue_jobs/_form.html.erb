@@ -1,0 +1,21 @@
+<%= form_for(@queue_job) do |f| %>
+  <% if @queue_job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@queue_job.errors.count, "error") %> prohibited this queue_job from being saved:</h2>
+
+      <ul>
+      <% @queue_job.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :item %><br />
+    <%= f.text_field :item %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
