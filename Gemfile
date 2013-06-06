@@ -21,5 +21,8 @@ end
 
 gem 'jquery-rails'
 gem 'has-many-autocomplete', :git => 'git://github.com/mpnolan/has-many-autocomplete'
+
 gem 'delayed_job_active_record'
 gem 'daemons'
+
+gem 'musicbrainz'
