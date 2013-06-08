@@ -1,6 +1,7 @@
 Lyrics::Application.routes.draw do
 
   resources :queue_jobs, :only => [:create, :new, :show, :index]
+  resources :job_errors, :only => [:show, :index, :destroy]
 
   resources :playlists do
     member do
