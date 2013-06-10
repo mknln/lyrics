@@ -10,4 +10,15 @@ class MusicScraper
       ["No tracks found"]
     end
   end
+
+  def self.youtube_id(artist, track)
+    client = YouTubeIt::Client.new(:dev_key => APP_CONFIG['keys']['youtube'])
+    result = client.videos_by(:query => "#{artist} - #{track} -vevo")
+    ids = result.videos.map { |v| MusicScraper.extract_id(v.video_id) }
+    ids
+  end
+
+  def self.extract_id(video_id_string)
+    video_id_string.split(':').last
+  end
 end

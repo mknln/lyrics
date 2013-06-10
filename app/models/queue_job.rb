@@ -8,7 +8,8 @@ class QueueJob < ActiveRecord::Base
     artist, album = self.item.split('-').map(&:strip)
     tracks = MusicScraper.scrape_tracks(artist, album)
     tracks.each do |track|
-      Lyric.create!({ :artist => artist, :title => track })
+      youtube_id = MusicScraper.youtube_id(artist, track).first || '' 
+      Lyric.create!({ :artist => artist, :title => track, :youtube_id => youtube_id })
     end
   end
   handle_asynchronously :scrape_album
