@@ -34,7 +34,13 @@
   Going to next video in... <span class="time">&nbsp;</span> <a href="#" class="stop-timer">stop</a>
 </div>
 
-<input type="hidden" id="next-lyric-id" value="<%= @next_lyric.id %>" />
+<span id="prev-lyric-id" style="display:none"><%= @prev_lyric.id %></span>
+<span id="next-lyric-id" style="display:none"><%= @next_lyric.id %></span>
+
+<div id="playlist-nav">
+  <a href="?lyric_id=<%= @prev_lyric.id %>">&laquo; Prev</a>
+  <a href="?lyric_id=<%= @next_lyric.id %>">Next &raquo;</a>
+</div>
 
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |

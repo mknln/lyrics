@@ -22,7 +22,7 @@ function countdown_to_page_skip() {
       }
 
       if (n == 0) {
-        window.location = window.location.pathname + "?lyric_id=" + $("#next-lyric-id").val();
+        window.location = window.location.pathname + "?lyric_id=" + $("#next-lyric-id").html();
       } else {
         $("#countdown-timer .time").html(n);
         setTimeout(function() { counter(n - 1); }, 1000);
@@ -45,7 +45,7 @@ $(document).ready(function() {
           'onStateChange': function(event) {
             if (event.data == YT.PlayerState.ENDED) {
               if ($("#next-lyric-id").length > 0) {
-                window.location = window.location.pathname + "?lyric_id=" + $("#next-lyric-id").val();
+                window.location = window.location.pathname + "?lyric_id=" + $("#next-lyric-id").html();
               }
               // forward them to the next video
             }

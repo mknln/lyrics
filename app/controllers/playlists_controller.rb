@@ -94,9 +94,11 @@ class PlaylistsController < ApplicationController
     if params[:lyric_id]
       index = @playlist.lyrics.find_index { |lyric| lyric.id == params[:lyric_id].to_i }
       @current_lyric = @playlist.lyrics[index]
+      @prev_lyric = @playlist.lyrics[(index - 1) % @playlist.lyrics.count]
       @next_lyric = @playlist.lyrics[(index + 1) % @playlist.lyrics.count]
     else
       @current_lyric = @playlist.lyrics.first
+      @prev_lyric = @playlist.lyrics.last
       @next_lyric = @playlist.lyrics[1 % @playlist.lyrics.count]
     end
 
