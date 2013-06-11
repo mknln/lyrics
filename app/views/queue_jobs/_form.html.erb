@@ -15,6 +15,10 @@
     <%= f.label :item %><br />
     <%= f.text_field :item %>
   </div>
+  <div class="field">
+    <%= f.check_box :make_playlist %>
+    <%= f.label :make_playlist, 'Also create playlist for album' %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

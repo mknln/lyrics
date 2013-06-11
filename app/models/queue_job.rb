@@ -1,5 +1,5 @@
 class QueueJob < ActiveRecord::Base
-  attr_accessible :item
+  attr_accessible :item, :make_playlist
   validates :item, :presence => true
   has_many :job_errors
 
@@ -7,9 +7,15 @@ class QueueJob < ActiveRecord::Base
     #puts "Scraping album... #{item}"
     artist, album = self.item.split('-').map(&:strip)
     tracks = MusicScraper.scrape_tracks(artist, album)
+
+    lyrics = []
     tracks.each do |track|
       youtube_id = MusicScraper.youtube_id(artist, track).first || '' 
-      Lyric.create!({ :artist => artist, :title => track, :youtube_id => youtube_id })
+      lyrics << Lyric.create!({ :artist => artist, :title => track, :youtube_id => youtube_id })
+    end
+
+    if self.make_playlist
+      Playlist.create!({ :name => self.item, :lyrics => lyrics })
     end
   end
   handle_asynchronously :scrape_album
